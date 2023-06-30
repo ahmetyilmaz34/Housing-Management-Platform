@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+	<body class="sb-nav-fixed">
+		<%- include("../partials/_navbar") %>
+			<div id="layoutSidenav">
+				<%- include("../partials/_menu") %>
+					<div id="layoutSidenav_content">
+						<main>
+							<div class="container-fluid px-4">
+								<h1 class="mt-4">Mesken</h1>
+								<div class="row">
+
+
+									<div id="overviews" class="section wb">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-9 blog-post-single">
+													<div class="blog-item">
+														<div class="image-blog">
+															<img src="/assets/images/ev5.jpg" alt="" class="img-fluid">
+														</div>
+														<div class="post-content">
+																	<div class="blog-title">
+																		<h2><a href="#" title="">
+																			<b>Daire Adı:</b> <%= mesken.name %></a></h2>
+																	</div>
+																	
+																	<div class="blog-desc">
+																		<blockquote class="default">
+																			<b>Metre Kare</b> <%= mesken.metreKare %>
+																		</blockquote>
+																	</div>
+																	
+																	<div class="blog-desc">
+																		<blockquote class="default">
+																			<b>Oda Sayısı</b> <%= mesken.odaSayisi %>
+																		</blockquote>
+																	</div>
+																	
+																	<div class="blog-desc">
+																		<blockquote class="default">
+																			<b>İçerik:</b> <%= mesken.description %>
+																		</blockquote>
+																	</div>
+														</div>
+													</div>
+
+											
+												</div><!-- end col -->
+												<div class="col-lg-3 col-12 right-single">
+													<div class="widget-search">
+														<div class="site-search-area">
+															<form method="GET" id="site-searchform" action="/yonetici/all-mesken">
+																<div>
+																	<input class="input-text form-control" name="search"
+																		id="search-k" placeholder="Arama" type="text">
+																	<button id="searchsubmit" value="Search"
+																		type="submit"></button>
+																</div>
+															</form>
+														</div>
+													</div>
+													<div class="widget-categories">
+														<h3 class="widget-title">Bloklar</h3>
+														<ul>
+															<% for (let i=0; i< categories.length; i++) { %>
+																<li><a
+																		href="/yonetici/all-mesken?categories=<%= categories[i].slug %>">
+																		<%= categories[i].name %>
+																	</a></li>
+																<% } %>
+														</ul>
+													</div>
+												</div>
+											</div><!-- end row -->
+										</div><!-- end container -->
+									</div><!-- end section -->
+								</div>
+							</div>
+						</main>
+					</div>
+			</div>
+
+		
+				<%- include("../partials/_jslib") %>
+	</body>
+
+</html>

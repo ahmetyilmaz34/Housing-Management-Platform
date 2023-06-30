@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+  <body class="sb-nav-fixed">
+    <%- include("../partials/_navbar") %>
+      <div id="layoutSidenav">
+        <%- include("../partials/_menu") %>
+          <div id="layoutSidenav_content">
+            <main>
+              <div class="container-fluid px-4">
+                <div class="row">
+                  <div
+                    class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Demirbaş Ekleme</h1>
+                  </div>
+                  <div class="col py-3">
+                    <div class="row">
+                      <div class="col">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/yonetici/demirbas/home">Demirbaş Listesi</a></li>
+                            <li class="breadcrumb-item active">Yeni Kayıt</li>
+                          </ol>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form action="/yonetici/demirbas/add" method="POST">
+                    <div class="row form-group mb-4">
+                      <div class="col">
+                        <label for="firstName">Demirbaş Adı</label>
+                        <input type="text" class="form-control" id="demirbasAdi" name="demirbasAdi" value=""
+                          placeholder="Demisbaş Adı" required>
+                      </div>
+                      <div class="col">
+                        <label for="lastName">Demirbaş Tür</label>
+                        <input type="text" class="form-control" id="demirbasTur" name="demirbasTur" value=""
+                          placeholder="Demirbaş Tür" required>
+                      </div>
+                    </div>
+                    <div class="row form-group mb-4">
+                      <div class="col">
+                        <label for="tel">Adet</label>
+                        <input type="text" class="form-control" id="adet" name="adet" value="" placeholder="Adet"
+                          required>
+                      </div>
+                      <div class="col">
+                        <label for="email">Konumu</label>
+                        <input type="text" class="form-control" id="konum" name="konum" value="" placeholder="Konum"
+                          required>
+                      </div>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="details">Detay</label>
+                      <textarea class="form-control" name="details" id="details" cols="30" rows="12"
+                        placeholder="Detay"></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                      <button type="submit" class="btn btn-primary">Ekle</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </main>
+          </div>
+      </div>
+        <%- include("../partials/_footer") %>
+          <%- include("../partials/_jslib") %>
+  </body>
+</html>

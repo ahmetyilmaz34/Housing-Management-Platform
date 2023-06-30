@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/_header") %>
+
+    <body>
+        <%- include("partials/_menu") %>
+            <div id="overviews" class="section wb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 ">
+                            <h1>Meskenler</h1>
+                            <div class="row">
+                                <% for (let i=0; i< meskenler.length; i++) { %>
+                                    <div class="col-lg-3 col-md-3 col-12">
+                                        <div class="course-item mb-5">
+                                            <div class="image-blog">
+                                                <a href="/users/<%= meskenler[i].slug %>" title=""><img
+                                                        src="/assets/images/ev4.jpg" alt="" class="img-fluid"></a>
+                                            </div>
+                                            <div class="course-br">
+                                                <div class="course-title">
+                                                    <a href="/users/<%= meskenler[i].slug %>" title="">
+                                                        <h2 style=" text-align: center;">
+                                                            <%= meskenler[i].name %>
+                                                        </h2>
+                                                    </a>
+                                                </div>
+                                                <div class="course-desc">
+                                                    <p style="color:black">
+                                                        <%= meskenler[i].description.substring(0, 100) + "..." %>
+                                                    </p>
+                                                </div>
+                                                <div class="course-desc">
+                                                    <p style="color:black">
+                                                        <b>Oda Sayısı:</b> <%= meskenler[i].odaSayisi %>
+                                                    </p>
+                                                </div>
+                                                <div class="course-desc">
+                                                    <p style="color:black">
+                                                        <b>Metre Kare:</b> <%= meskenler[i].metreKare %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end col -->
+                                    <% } %>
+                            </div><!-- end row -->
+                        </div><!-- end col -->
+
+                        <div class="col-lg-3 col-12 right-single">
+                            <div class="widget-search">
+                                <div class="site-search-area">
+                                    <form method="GET" id="site-searchform" action="/users">
+                                        <div>
+                                            <input class="input-text form-control" name="search" id="search-k"
+                                                placeholder="Arama" type="text">
+                                            <button id="searchsubmit" value="Search" type="submit"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Bloklar</h3>
+                                <ul>
+                                    <% for (let i=0; i< categories.length; i++) { %>
+                                        <li class="mt-2"><a href="/users/meskenler?categories=<%= categories[i].slug %>" style="color:black">
+                                                <%= categories[i].name %>
+                                            </a></li>
+                                        <% } %>
+                                </ul>
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end section -->
+
+            <%- include("partials/_footer") %>
+                <%- include("partials/_jslib") %>
+
+    </body>
+
+</html>

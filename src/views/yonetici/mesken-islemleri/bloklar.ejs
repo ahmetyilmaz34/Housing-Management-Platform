@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+    <body class="sb-nav-fixed">
+        <%- include("../partials/_navbar") %>
+            <div id="layoutSidenav">
+                <%- include("../partials/_menu") %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">Bloklar</h1>
+                                <div class="row">
+
+
+                                    <div class="row mt-5">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Blok ID</th>
+                                                    <th scope="col">Blok</th>
+                                                    <th scope="col">Ekle</th>
+                                                    <th scope="col">Sil</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for (let i=0; i< categories.length; i++) { %>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <%=categories[i]._id %>
+                                                        </th>
+                                                        <td>
+                                                            <%=categories[i].name %>
+                                                        </td>
+                                                        <td><button class="btn btn-lg btn-primary rounded-0 text-white"
+                                                                href="#" data-toggle="modal"
+                                                                data-target="#addCategory"><span>
+                                                                    Ekle</span></button></td>
+                                                        <td><a href="/yonetici/blok/<%= categories[i]._id %>?_method=DELETE"
+                                                                onclick="return confirm('Silmek Üzeresiniz Emin misiniz?')"
+                                                                class="btn btn-danger rounded-0 text-white"><span>Sil</span></a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- end row -->
+
+                                    <!-- ADD Modal -->
+                                    <div class="modal fade" id="addCategory" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body customer-box">
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="Login">
+                                                            <form method="POST" action="/yonetici/blok"
+                                                                class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" name="name"
+                                                                            class="form-control" placeholder="Blok Adı">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-10">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary btn-radius btn-brd grd1">
+                                                                            Ekle
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger btn-radius btn-brd grd1"
+                                                                            data-dismiss="modal" aria-hidden="true">
+                                                                            İptal
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+            </div>
+
+            <%- include("../partials/_footer") %>
+                <%- include("../partials/_jslib") %>
+    </body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+    <body class="sb-nav-fixed">
+        <%- include("../partials/_navbar") %>
+            <div id="layoutSidenav">
+                <%- include("../partials/_menu") %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4"> Mesken Bilgisi</h1>
+                                <div id="overviews" class="section wb">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-9 blog-post-single">
+                                                <div class="blog-item">
+                                                    <div class="image-blog">
+                                                        <img src="/assets/images/ev5.jpg" alt="" class="img-fluid">
+                                                    </div>
+                                                    <div class="post-content">
+
+                                                      
+                                                                <div class="blog-title">
+                                                                    <h1><a href="/auth/<%= user._id %>" title="">
+                                                                            <b>Mesken Sakini:</b>
+                                                                            <%= user.name %>
+                                                                        </a></h1>
+                                                                </div>
+                                                                <div class="blog-title">
+                                                                    <h2 class="mt-2">
+                                                                        <b>Mesken Adı:</b>
+                                                                        <%= mesken.name %>
+                                                                    </h2>
+                                                                </div>
+                                                                <div class="blog-desc">
+                                                                    <blockquote class="default">
+                                                                        <b>İçerik:</b>
+                                                                        <%= mesken.description %>
+                                                                    </blockquote>
+                                                                    <blockquote class="default">
+                                                                        <b>Oda Sayısı:</b>
+                                                                        <%= mesken.odaSayisi %>
+                                                                    </blockquote>
+                                                                    <blockquote class="default">
+                                                                        <b>Metre Kare:</b>
+                                                                        <%= mesken.metreKare %>
+                                                                    </blockquote>
+                                                                </div>
+                                                          
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+            </div>
+
+            <%- include("../partials/_footer") %>
+                <%- include("../partials/_jslib") %>
+    </body>
+
+</html>

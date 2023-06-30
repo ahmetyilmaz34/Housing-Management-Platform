@@ -1,0 +1,48 @@
+<!-- Header Start -->
+<div class="container-fluid  ">
+    <div class="row ">
+        <div class="col-lg-3  d-none d-lg-block">
+            <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                <h1 class="m-0 display-4 text-primary text-uppercase">Mesken</h1>
+            </a>
+        </div>
+        <div class="col-lg-9 ">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light p-0">
+                <a href="/" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">Mesken</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="/" class="nav-item nav-link <%= link === '/' && 'active' %>">Ana Sayfa</a>
+                        <a href="/duyuru" class="nav-item nav-link <%= link === 'duyuru' && 'active' %>">Duyurular</a>
+                        <a href="/contact" class="nav-item nav-link <%= link === 'contact' && 'active' %>">İletişim</a>
+
+
+                        <% if(userIN) { %>
+                            <a href="/auth/dashboard"
+                                class="nav-item nav-link <%=link ==='dashboard' && 'active' %>">Dashboard</a>
+
+                            <% } %>
+
+                                <% if(!userIN) { %>
+
+                                    <a class="nav-item nav-link <%= link ==='login' && 'active' %> mr-2"
+                                        href="/login">Giriş</a>
+                                    <a class="nav-item nav-link <%= link ==='register' && 'active' %>"
+                                        href="/register">Kayıt</a>
+
+                                    <% } %>
+                                        <% if(userIN) { %>
+                                            <a class="nav-item nav-link" href="/auth/logout">Çıkış</a>
+                                            <% } %>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Header End -->

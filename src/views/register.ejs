@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/_header") %>
+
+    <body class="">
+        <%- include("partials/_menu") %>
+            <div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <main>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">Hesap Oluştur</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form id="request" class="main_form" method="POST" action="auth/signup">
+                                                <div class="row ">
+                                                    <div class="col-md-12">
+                                                        <% if (flashMessages) { %>
+                                                            <% if (flashMessages.success) { %>
+                                                                <div class="alert alert-success">
+                                                                    <%= flashMessages.success %>
+                                                                </div>
+                                                                <% } else if (flashMessages.error) { %>
+                                                                    <div class="alert alert-danger">
+                                                                        <%= flashMessages.error %>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% } %>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" name="name" id="name" class="form-control"
+                                                            placeholder="Kullanıcı adı">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="email" name="email" id="email" class="form-control"
+                                                            placeholder="Email">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" name="role">
+                                                            <option>Kiraci</option>
+                                                            <option>Mesken-Sahibi</option>
+                                                           
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="password" name="password" id="password"
+                                                            class="form-control" placeholder="Şifre">
+                                                    </div>
+                                                    <div class="col-md-12 mt-2">
+                                                        <div class="group_form">
+                                                            <button type="submit" value="LOGIN" id="submit"
+                                                                class="btn btn-primary">Kayıt Ol</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/login">Hesabınız var mı ? Girişe gidin</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </main>
+            </div>
+
+            <%- include("partials/_footer") %>
+                <%- include("partials/_jslib") %>
+    </body>
+
+</html>

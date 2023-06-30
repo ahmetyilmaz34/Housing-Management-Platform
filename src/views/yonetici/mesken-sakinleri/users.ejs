@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+   <body class="sb-nav-fixed">
+      <%- include("../partials/_navbar") %>
+         <div id="layoutSidenav">
+            <%- include("../partials/_menu") %>
+               <div id="layoutSidenav_content">
+                  <main>
+                     <div class="container-fluid px-4">
+                        <h1 class="mt-4">Sakinler</h1>
+                        <div class="row">
+
+                           <!-- team -->
+                           <div class="team">
+                              <div class="container_with">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="titlepage text_align_center">
+                                          <h2>Kiracılar</h2>
+                                       </div>
+                                    </div>
+
+                                    <% for (kiraci of kiracilar) { %>
+                                       <div class="col-lg-2 col-md-2 col-12">
+                                          <div class="col-md-12">
+                                             <div class="satteb text_align_center">
+                                                <figure><img src="/assets/images/profil.jpg" alt="#" width="45em"
+                                                      height="25em" /></figure>
+                                             </div>
+                                             <div class="course-br">
+                                                <div class="course-title">
+                                                   <%= kiraci.name %>
+                                                </div>
+                                                <div class="course-desc">
+
+                                                   <p> Profil Sayfasına Git
+                                                      <a href="/auth/<%= kiraci._id %>">
+                                                         <i class="fa fa-external-link-square" aria-hidden="true">
+                                                         </i>
+                                                      </a>
+                                                   </p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div><!-- end col -->
+
+
+                                       <% } %>
+                                       <div class="col-md-12">
+                                          <div class="titlepage text_align_center">
+                                             <h2>Mesken Sahipleri</h2>
+                                          </div>
+                                       </div>
+   
+                                       <% for (meskenSahibi of meskenSahibi) { %>
+                                          <div class="col-lg-2 col-md-2 col-12">
+                                             <div class="col-md-12">
+                                                <div class="satteb text_align_center">
+                                                   <figure><img src="/assets/images/profil.jpg" alt="#" width="45em"
+                                                         height="25em" /></figure>
+                                                </div>
+                                                <div class="course-br">
+                                                   <div class="course-title">
+                                                      <%= meskenSahibi.name %>
+                                                   </div>
+                                                   <div class="course-desc">
+   
+                                                      <p> Profil Sayfasına Git
+                                                         <a href="/auth/<%= meskenSahibi._id %>">
+                                                            <i class="fa fa-external-link-square" aria-hidden="true">
+                                                            </i>
+                                                         </a>
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div><!-- end col -->
+   
+   
+                                          <% } %>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- end team -->
+                        </div>
+                     </div>
+                  </main>
+               </div>
+         </div>
+
+         <%- include("../partials/_footer") %>
+            <%- include("../partials/_jslib") %>
+   </body>
+
+</html>

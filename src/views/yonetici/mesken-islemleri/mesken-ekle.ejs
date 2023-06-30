@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+    <body class="sb-nav-fixed">
+        <%- include("../partials/_navbar") %>
+            <div id="layoutSidenav">
+                <%- include("../partials/_menu") %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">Mesken Ekleme</h1>
+                                <div class="row">
+                                    <div id="overviews" class="section wb">
+                                        <div class="container">
+                                            <div class="row">
+                                                <% if (flashMessages) { %>
+
+                                                    <% if (flashMessages.success) { %>
+                                                        <div class="alert alert-success">
+                                                            <%= flashMessages.success %>
+                                                        </div>
+
+                                                        <% } else if (flashMessages.error) { %>
+                                                            <div class="alert alert-danger">
+                                                                <%= flashMessages.error %>
+                                                            </div>
+                                                            <% } %>
+
+                                                                <% } %>
+
+                                                                    <!-- Modal Button -->
+                                                                    <div class="col-lg-12 text-center ">
+                                                                        <button
+                                                                            class="btn btn-lg btn-primary rounded-0 text-white"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#addMesken"><span>Yeni Mesken
+                                                                                Ekle</span></button>
+                                                                    </div>
+
+
+                                            </div><!-- end row -->
+
+
+                                            <div class="row mt-5">
+
+                                                <% for (let i=0; i< meskenler.length; i++) { %>
+                                                    <div class="col-lg-2 col-md-2 col-12">
+                                                        <div class="course-item mb-5">
+                                                            <div class="image-blog">
+                                                                <a href="/yonetici/mesken/<%= meskenler[i].slug %>" title="">
+
+                                                                    <img src="/assets/images/ev4.jpg" alt=""
+                                                                        class="img-fluid"></a>
+                                                            </div>
+                                                            <div class="course-br">
+                                                                <div class="course-title">
+                                                                    <h2><a href="/yonetici/mesken/<%= meskenler[i].slug %>"
+                                                                            title="">
+                                                                            <%= meskenler[i].name %>
+                                                                        </a></h2>
+                                                                </div>
+                                                                <div class="course-desc">
+                                                                    <p>
+                                                                        <%= meskenler[i].description %>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="clearfix">
+                                                                    <ul style="list-style-type: none;">
+                                                                        <li style="float: left;"><button
+                                                                                class="btn btn-primary rounded-0 text-white"
+                                                                                data-toggle="modal"
+                                                                                data-target="#updateMesken<%= meskenler[i]._id %>"><span>Güncelle</span></button>
+                                                                        </li>
+                                                                        <li style="float: right;"><a
+                                                                                href="/yonetici/mesken/<%= meskenler[i].slug %>?_method=DELETE"
+                                                                                onclick="return confirm('Emin misiniz?')"
+                                                                                class="btn btn-danger rounded-0 text-white"><span>Sil</span></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end col -->
+
+                                                    <!-- UPDATE Modal -->
+                                                    <div class="modal fade" id="updateMesken<%= meskenler[i]._id %>"
+                                                        tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                            role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body customer-box">
+                                                                    <!-- Tab panes -->
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="Login">
+                                                                            <form method="POST"
+                                                                                action="/yonetici/mesken/<%= meskenler[i].slug %>?_method=PUT"
+                                                                                class="form-horizontal">
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <input type="text" name="name"
+                                                                                            value="<%= meskenler[i].name %>"
+                                                                                            class="form-control"
+                                                                                            placeholder="Daire Adı">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <input type="text" name="odaSayisi"
+                                                                                        value="<%= meskenler[i].odaSayisi %>"
+                                                                                            class="form-control"
+                                                                                            placeholder="Oda Sayısı">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <input type="text" name="metreKare"
+                                                                                        value="<%= meskenler[i].metreKare %>"
+                                                                                            class="form-control"
+                                                                                            placeholder="Metre Kare">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <input type="hidden" name="role"
+                                                                                            class="form-control"
+                                                                                            value="<%= user.role %>">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <textarea rows="8"
+                                                                                            name="description"
+                                                                                            class="form-control"
+                                                                                            placeholder="İçerik"
+                                                                                            required><%= meskenler[i].description %></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-sm-12">
+                                                                                        <select class="form-control"
+                                                                                            name="category">
+                                                                                            <% for (let i=0;i<categories.length;i++){ %>
+                                                                                                <option
+                                                                                                    value="<%= categories[i]._id %>">
+                                                                                                    <%=
+                                                                                                        categories[i].name%>
+                                                                                                </option>
+                                                                                                <% } %>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-10">
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-primary btn-radius btn-brd grd1">
+                                                                                            Güncelle
+                                                                                        </button>
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-danger btn-radius btn-brd grd1"
+                                                                                            data-dismiss="modal"
+                                                                                            aria-hidden="true">
+                                                                                            İptal
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <% } %>
+
+                                            </div><!-- end row -->
+                                        </div><!-- end container -->
+                                    </div> <!-- end section -->
+
+                                    <!-- ADD Modal -->
+                                    <div class="modal fade" id="addMesken" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body customer-box">
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="Login">
+                                                            <form method="POST" action="/yonetici/mesken-create" class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" name="name"
+                                                                            class="form-control"
+                                                                            placeholder="Mesken Adı">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" name="odaSayisi"
+                                                                            class="form-control"
+                                                                            placeholder="Oda Sayısı">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" name="metreKare"
+                                                                            class="form-control"
+                                                                            placeholder="Metre Kare">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <input type="hidden" name="role"
+                                                                            class="form-control"
+                                                                            value="<%= user.role %>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <textarea rows="8" name="description"
+                                                                            class="form-control" placeholder="İçerik"
+                                                                            required></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-12">
+                                                                        <select class="form-control" name="category">
+                                                                            <% for (let i=0; i< categories.length; i++){ %>
+                                                                                <option value="<%= categories[i]._id %>"> <%= categories[i].name %></option>
+                                                                                <% } %>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-10">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary btn-radius btn-brd grd1">
+                                                                            Ekle
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger btn-radius btn-brd grd1"
+                                                                            data-dismiss="modal" aria-hidden="true">
+                                                                            İptal
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+            </div>
+            <%- include("../partials/_jslib") %>
+    </body>
+</html>

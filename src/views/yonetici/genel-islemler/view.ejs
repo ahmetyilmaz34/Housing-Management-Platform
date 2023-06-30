@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+  <body class="sb-nav-fixed">
+    <%- include("../partials/_navbar") %>
+      <div id="layoutSidenav">
+        <%- include("../partials/_menu") %>
+          <div id="layoutSidenav_content">
+            <main>
+              <div class="container-fluid px-4">
+                <div class="row">
+
+                  <div
+                    class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">
+                      <%= demirbas.demirbasAdi %>
+                        <%= demirbas.demirbasTur %>
+                    </h1>
+
+                  </div>
+
+                  <div class="col py-3">
+
+                    <div class="row">
+                      <div class="col">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/yonetici/demirbas/home">Demirbas Listesi</a></li>
+                            <li class="breadcrumb-item active">
+                              <%= demirbas.demirbasAdi %>
+                            </li>
+                          </ol>
+                        </nav>
+                      </div>
+                      <div class="col text-end fw-lighter">
+                        <b>Son Güncelleme <%= new Date(demirbas.updatedAt).toUTCString() %> </b>
+                        <b>Id</b>
+                        <%= demirbas._id %>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <ul class="list-group">
+
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Demirbaş Adı</b></div>
+                        <div class="col">
+                          <%= demirbas.demirbasAdi %>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Demirbaş Tür</b></div>
+                        <div class="col">
+                            <%= demirbas.demirbasTur %>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Adet</b></div>
+                        <div class="col">
+                          <%= demirbas.adet %>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Konum</b></div>
+                        <div class="col">
+                          <%= demirbas.konum %>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Detay</b></div>
+                        <div class="col">
+                          <%= demirbas.details %>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Oluşturulma Tarihi</b></div>
+                        <div class="col">
+                          <%= demirbas.createdAt %>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col" style="max-width: 140px"> <b>Değiştirilme Tarihi</b></div>
+                        <div class="col">
+                          <%= demirbas.updatedAt %>
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </main>
+          </div>
+      </div>
+      <%- include("../partials/_footer") %>
+        <%- include("../partials/_jslib") %>
+  </body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/_header") %>
+
+  <body class="sb-nav-fixed">
+    <%- include("../partials/_navbar") %>
+      <div id="layoutSidenav">
+        <%- include("../partials/_menu") %>
+          <div id="layoutSidenav_content">
+            <main>
+              <div class="container-fluid px-4">
+                <div class="row">
+
+                  <div
+                    class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Düzenleme <%= demirbas.demirbasAdi %>
+                        <%= demirbas.demirbasTur %>
+                    </h1>
+
+                  </div>
+
+                  <div class="col py-3">
+                    <div class="row">
+                      <div class="col">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/yonetici/demirbas/home">Demirbaş Listesi</a></li>
+                            <li class="breadcrumb-item active">
+                              <%= demirbas.demirbasAdi %>
+                                <%= demirbas.demirbasTur %>
+                            </li>
+                          </ol>
+                        </nav>
+                      </div>
+                      <div class="col text-end ">
+                        <b>Son Güncelleme</b> <p><%= new Date(demirbas.updatedAt).toUTCString() %></p>
+                      </div>
+                      <div class="col text-end ">
+                        <b>Demirbaş ID</b><p><%= demirbas._id %></p>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                  <form action="/yonetici/demirbas/edit/<%= demirbas._id %>?_method=PUT" method="POST">
+
+                    <div class="row form-group mb-4">
+                      <div class="col">
+                        <label for="demirbasAdi">Demirbaş Adı</label>
+                        <input type="text" class="form-control" id="demirbasAdi" name="demirbasAdi"
+                          value="<%= demirbas.demirbasAdi %>" placeholder="Demirbaş Adı" required>
+                      </div>
+
+                      <div class="col">
+                        <label for="demirbasTur">Demirbaş Tür</label>
+                        <input type="text" class="form-control" id="demirbasTur" name="demirbasTur"
+                          value="<%= demirbas.demirbasTur %>" placeholder="Demirbaş Tür" required>
+                      </div>
+                    </div>
+
+                    <div class="row form-group mb-4">
+                      <div class="col">
+                        <label for="adet">Adet</label>
+                        <input type="text" class="form-control" id="adet" name="adet" value="<%= demirbas.adet %>"
+                          placeholder="Adet" required>
+                      </div>
+
+                      <div class="col">
+                        <label for="konum">Konum</label>
+                        <input type="text" class="form-control" id="konum" name="konum" value="<%= demirbas.konum %>"
+                          placeholder="Konum" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                      <label for="details">Detay</label>
+                      <textarea class="form-control" name="details" id="details" cols="30" rows="12"
+                        placeholder="Detay"><%= demirbas.details %></textarea>
+                    </div>
+
+                    <div class="form-group mb-4">
+                      <button type="submit" class="btn btn-primary">Kayıdı Güncelle</button>
+
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="deleteButton"
+                        data-bs-target="#deleteModal">Kayıdı Sil</button>
+                    </div>
+                  </form>
+
+
+
+                  <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <div class="modal-title">Bir kaydı kaldırmak üzeresiniz.</div>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            Seçilen kayıt kaldırılacaktır<b class="fw-bold">
+                              <%= demirbas.demirbasAdi %>
+                                <%= demirbas.demirbasTur %>
+                            </b><br />
+                              Emin misiniz?
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                          <form action="/yonetici/demirbas/edit/<%= demirbas._id %>?_method=DELETE" method="POST"
+                            class="position-relative">
+                            <button type="submit" class="btn btn-primary">Evet, Kayıdı Sil </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+      </div>
+
+      <%- include("../partials/_footer") %>
+        <%- include("../partials/_jslib") %>
+  </body>
+
+</html>

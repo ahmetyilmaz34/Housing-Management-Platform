@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/_header") %>
+
+    <body>
+        <%- include("partials/_menu") %>
+
+
+
+            <div id="overviews" class="section wb">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 blog-post-single">
+                            <div class="blog-item">
+                                <div class="image-blog">
+                                    <h1 class="mb-2">Mesken Bilgileri</h1>
+                                    <img src="/assets/images/ev5.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="post-content">
+                                    <% if (user && !(user.meskenler.includes(mesken._id)) ) { %>
+                                        <div class="post-date mt-3 mb-3">
+                                            <form method="POST" action="/users/enroll">
+                                                <input type="hidden" name="mesken_id" value="<%= mesken._id %>">
+                                                <button class="btn btn-lg btn-primary text-white"
+                                                    onclick="return confirm('Kaydı Onaylıyor musunuz?')"><span>Kayıt</span></button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                            <div class="blog-title">
+                                                <h2 class="mt-2"><a href="#" title="">
+                                                        <b>Mesken Adı:</b>
+                                                        <%= mesken.name %>
+                                                    </a></h2>
+                                                    <h2 class="mt-4"> Oda Sayısı: <%= mesken.odaSayisi %></h2>
+                                                    <h2 class="mt-4"> Metre Kare: <%= mesken.metreKare %></h2>
+                                            </div>
+                                            <div class="blog-desc">
+                                                <blockquote class="default">
+                                                    <b>İçerik:</b>
+                                                    <%= mesken.description %>
+                                                </blockquote>
+                                            </div>
+                                </div>
+                            </div>
+
+                        </div><!-- end col -->
+
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end section -->
+
+
+
+            <%- include("partials/_footer") %>
+                <%- include("partials/_jslib") %>
+    </body>
+
+</html>

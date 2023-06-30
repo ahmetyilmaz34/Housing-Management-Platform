@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/_header") %>
+
+   <body>
+      <%- include("partials/_menu") %>
+
+         <% if(user) { %>
+
+            <% if(user.role==='Kiraci' ) { %>
+
+               <div class="all-title-box">
+                  <div class="container text-center">
+                     <h1>
+                        <span class="m_1">
+                           <%= user.name %> giriş yaptı
+                        </span>
+                     </h1>
+                  </div>
+               </div>
+
+               <div id="overviews" class="section wb">
+                  <div class="container">
+                     <div class="row mt-5">
+                        <div class="col-lg-3 ">
+                           <h1>Aidat Ödeme</h1>
+                           <a href="/aidat"> <button type="button" class="btn btn-primary py-3 px-5 mt-2">Aidat Ödeme
+                              </button></a>
+                        </div>
+                        <div class="col-lg-3  ">
+                           <h1>Mesken Kayıt</h1>
+                           <a href="/users/meskenler"> <button type="button" class="btn btn-primary py-3 px-5 mt-2">Mesken
+                                 Kayıt
+                              </button></a>
+                        </div>
+                        <div class="col-lg-3  ">
+                           <h1>Mesken Bilgileri</h1>
+                           <a href="/users/mesken-bilgi"> <button type="button"
+                                 class="btn btn-primary py-3 px-5 mt-2">Mesken Bilgileri
+                              </button></a>
+                        </div>
+                        <div class="col-lg-3  ">
+                           <h1>Arıza Girişi</h1>
+                           <button data-toggle="modal" data-target=".bd-example-modal-lg" type="button"
+                              class="btn btn-primary py-3 px-5 mt-2 ">Arıza Bildirmi </button>
+
+                        </div>
+                     </div><!-- end row -->
+
+
+
+                     <%if (photos.length> 0) { %>
+                        <!--photos-->
+                        <div class="row mt-5">
+                           <div class="col-md-12">
+                              <div class="titlepage text_align_center">
+                                 <h2>Girilen Arızalar</h2>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="tz-gallery">
+                           <div class="row">
+                              <% for (photo of photos) { %>
+                                 <div class="col-lg-4 col-md-6 ma_bottom30">
+                                    <div class="lightbox">
+                                       <img src="<%= photo.url %>" alt="<%= photo.name %>">
+                                       <div class="view_main">
+                                          <div class="pose">
+                                             <a class="read_more" href="/users/photos/<%= photo._id %>"><img
+                                                   src="/assets/images/ga.png" alt="#" /></a>
+                                             <h3 style="padding-top:10px ; padding-bottom: 10px;">
+                                                <%= photo.name %>
+                                             </h3>
+                                             <p style="padding-top: 10px;">
+                                                <%= photo.description.substring(0,80)+"..." %>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <%} %>
+
+
+                           </div>
+                        </div>
+
+                        <% } %>
+
+
+                           <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                              aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                       </button>
+                                    </div>
+                                    <div style="margin-top: 50px; margin-bottom: 50px;" class="container">
+                                       <div class="row">
+                                          <div class="col-md-12 ">
+                                             <div class="text_align_center">
+                                                <h2 style="
+                                  font-size: 30px;
+                                  margin-bottom: 20px;
+                                  color: #a78a5a;
+                              ">Arıza Bildirimi</h2>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-10 offset-md-1">
+                                             <form id="request" class="main_form" method="POST" action="/users/photos"
+                                                enctype="multipart/form-data">
+                                                <div class="row">
+                                                   <div class="col-md-12">
+                                                      <input class="form_control" placeholder="Arıza Başlığı"
+                                                         type="text" name="name">
+                                                   </div>
+                                                   <div class="col-md-12">
+                                                      <textarea name="description" style="height: 150px;"
+                                                         class="form_control"
+                                                         placeholder="Arıza İçeriği Nedir Açıklayınız"
+                                                         rows="5"></textarea>
+                                                   </div>
+
+                                                   <div style="margin-bottom: 20px ;" class="col-md-12">
+                                                      <input type="file" name="image" class="form-control-file">
+                                                   </div>
+
+                                                   <div class="col-md-12">
+                                                      <div class="group_form">
+                                                         <button class="btn btn-primary py-3 px-5 mt-2 ">Fotoğrafı
+                                                            Yükleyiniz </button>
+
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </form>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+
+
+
+                  </div><!-- end container -->
+               </div><!-- end section -->
+
+               <% } %>
+
+
+
+                  <% if(user.role==='Mesken-Sahibi' ) { %>
+
+                     <div class="all-title-box">
+                        <div class="container text-center">
+                           <h1>
+                              <span class="m_1">
+                                 <%= user.name %> giriş yaptı
+                              </span>
+                           </h1>
+                        </div>
+                     </div>
+      
+                     <div id="overviews" class="section wb">
+                        <div class="container">
+                           <div class="row mt-5">
+                              <div class="col-lg-3 ">
+                                 <h1>Aidat Ödeme</h1>
+                                 <a href="/aidat"> <button type="button" class="btn btn-primary py-3 px-5 mt-2">Aidat Ödeme
+                                    </button></a>
+                              </div>
+                              <div class="col-lg-3  ">
+                                 <h1>Mesken Kayıt</h1>
+                                 <a href="/users/meskenler"> <button type="button" class="btn btn-primary py-3 px-5 mt-2">Mesken
+                                       Kayıt
+                                    </button></a>
+                              </div>
+                              <div class="col-lg-3  ">
+                                 <h1>Mesken Bilgileri</h1>
+                                 <a href="/users/mesken-bilgi"> <button type="button"
+                                       class="btn btn-primary py-3 px-5 mt-2">Mesken Bilgileri
+                                    </button></a>
+                              </div>
+                              <div class="col-lg-3  ">
+                                 <h1>Arıza Girişi</h1>
+                                 <button data-toggle="modal" data-target=".bd-example-modal-lg" type="button"
+                                    class="btn btn-primary py-3 px-5 mt-2 ">Arıza Bildirmi </button>
+      
+                              </div>
+                           </div><!-- end row -->
+      
+      
+      
+                           <%if (photos.length> 0) { %>
+                              <!--photos-->
+                              <div class="row mt-5">
+                                 <div class="col-md-12">
+                                    <div class="titlepage text_align_center">
+                                       <h2>Girilen Arızalar</h2>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="tz-gallery">
+                                 <div class="row">
+                                    <% for (photo of photos) { %>
+                                       <div class="col-lg-4 col-md-6 ma_bottom30">
+                                          <div class="lightbox">
+                                             <img src="<%= photo.url %>" alt="<%= photo.name %>">
+                                             <div class="view_main">
+                                                <div class="pose">
+                                                   <a class="read_more" href="/users/photos/<%= photo._id %>"><img
+                                                         src="/assets/images/ga.png" alt="#" /></a>
+                                                   <h3 style="padding-top:10px ; padding-bottom: 10px;">
+                                                      <%= photo.name %>
+                                                   </h3>
+                                                   <p style="padding-top: 10px;">
+                                                      <%= photo.description.substring(0,80)+"..." %>
+                                                   </p>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <%} %>
+      
+      
+                                 </div>
+                              </div>
+      
+                              <% } %>
+      
+      
+                                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                             </button>
+                                          </div>
+                                          <div style="margin-top: 50px; margin-bottom: 50px;" class="container">
+                                             <div class="row">
+                                                <div class="col-md-12 ">
+                                                   <div class="text_align_center">
+                                                      <h2 style="
+                                        font-size: 30px;
+                                        margin-bottom: 20px;
+                                        color: #a78a5a;
+                                    ">Arıza Bildirimi</h2>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-10 offset-md-1">
+                                                   <form id="request" class="main_form" method="POST" action="/users/photos"
+                                                      enctype="multipart/form-data">
+                                                      <div class="row">
+                                                         <div class="col-md-12">
+                                                            <input class="form_control" placeholder="Arıza Başlığı"
+                                                               type="text" name="name">
+                                                         </div>
+                                                         <div class="col-md-12">
+                                                            <textarea name="description" style="height: 150px;"
+                                                               class="form_control"
+                                                               placeholder="Arıza İçeriği Nedir Açıklayınız"
+                                                               rows="5"></textarea>
+                                                         </div>
+      
+                                                         <div style="margin-bottom: 20px ;" class="col-md-12">
+                                                            <input type="file" name="image" class="form-control-file">
+                                                         </div>
+      
+                                                         <div class="col-md-12">
+                                                            <div class="group_form">
+                                                               <button class="btn btn-primary py-3 px-5 mt-2 ">Fotoğrafı
+                                                                  Yükleyiniz </button>
+      
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </form>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+      
+      
+      
+      
+                        </div><!-- end container -->
+                     </div><!-- end section -->
+
+                     <% } %>
+
+
+                        <% if(user.role==='Yonetici' ) { %>
+
+                           <div class="all-title-box">
+                              <div class="container text-center">
+                                 <h1>
+                                    <span class="m_1">
+                                       <%= user.name %> giriş yaptı
+                                    </span>
+                                 </h1>
+                              </div>
+                           </div>
+
+                           <div id="overviews" class="section wb">
+                              <div class="container">
+                                 <div class="row">
+                                    <% if (flashMessages) { %>
+
+                                       <% if (flashMessages.success) { %>
+                                          <div class="alert alert-success">
+                                             <%= flashMessages.success %>
+                                          </div>
+
+                                          <% } else if (flashMessages.error) { %>
+                                             <div class="alert alert-danger">
+                                                <%= flashMessages.error %>
+                                             </div>
+                                             <% } %>
+
+                                                <% } %>
+
+                                                   <!-- Modal Button -->
+                                                   <div class="col-lg-12 text-center ">
+                                                      <a class="btn btn-primary py-3 px-5 mt-2"
+                                                         href="/yonetici/yonetici-index">Yönetici Paneli</a>
+                                                   </div>
+
+                                                   <!-- ! buraya eklemeler yapılacak-->
+
+
+                                 </div><!-- end row -->
+
+                              </div><!-- end container -->
+                           </div><!-- end section -->
+
+
+
+                           <% } %>
+
+                              <% if(user.role==='admin' ) { %>
+
+                                 <div class="all-title-box">
+                                    <div class="container text-center">
+                                       <h1>
+                                          <span class="m_1">
+                                             <%= user.name %> giriş yaptı
+                                          </span>
+                                       </h1>
+                                    </div>
+                                 </div>
+
+                                 <div class="col-lg-12 text-center ">
+                                    <a class="btn btn-primary py-3 px-5 mt-2" href="/admin/admin-index">Admin Paneli</a>
+                                 </div>
+
+
+                                 <% } %>
+
+
+                                    <% } %>
+
+
+
+                                       <%- include("partials/_footer") %>
+                                          <%- include("partials/_jslib") %>
+
+   </body>
+
+</html>
